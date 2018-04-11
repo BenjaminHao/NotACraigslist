@@ -52,7 +52,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 ?>
-<form class="form-signin" role="form" method = "post" action = "<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" enctype = "multipart/form-data">
+<form role="form" method = "post" action = "<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" enctype = "multipart/form-data">
     <h1 for="Register" class="h3 mb-3 font-weight-normal">Register</h1>
     <label for="Username" class="sr-only">Username</label>
     <input type="text" id="username" class="form-control" placeholder="Please enter Username" name="username">
