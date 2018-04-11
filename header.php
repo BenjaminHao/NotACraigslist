@@ -6,15 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="../../favicon.ico">
+<!--    <link rel="icon" href="../../favicon.ico">-->
 
-    <title>J NotACraigslist</title>
+    <title>NotACraigslist</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="./css/bootstrap.css" rel="stylesheet">
     <!-- Bootstrap theme -->
-    <link href="/css/bootstrap-theme.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="/css/style.css">
+    <link href="./css/bootstrap-theme.css" rel="stylesheet">
+    <link rel="stylesheet" href="./css/style.css">
 
     <!-- FontAwesome -->
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
@@ -23,6 +23,5 @@
     <link href="theme.css" rel="stylesheet">
 </head>
 
-<body role="document">
-
-<? include_once 'navbar.php';?>
+<body class="text-center" role="document">
+<?php include_once 'navbar.php';?>
