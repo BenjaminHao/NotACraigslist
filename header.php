@@ -12,15 +12,16 @@
 
     <!-- Bootstrap core CSS -->
     <link href="./css/bootstrap.css" rel="stylesheet">
+<!--    <link href="https://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">-->
     <!-- Bootstrap theme -->
     <link href="./css/bootstrap-theme.css" rel="stylesheet">
-    <link rel="stylesheet" href="./css/style.css">
 
     <!-- FontAwesome -->
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="theme.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet" type="text/css">
+    <!--    <link href="theme.css" rel="stylesheet">-->
 </head>
 
 <body class="text-center" role="document">
