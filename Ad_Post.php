@@ -4,15 +4,30 @@
 // defining variables to store the data entered in the form and the error messages
 $subcategory = $location = $title = $price = $description = $email = $confirmemail = $terms = $image1 = $image2 = $image3 = $image4 = $resetvalue = "";
 $titleerr = $priceerr =  $emailerr = $conferr = $termerr = $image1err = $image2err = $image3err = $image4err = "";
+$user_id = $_SESSION['user_id'];
 
+if (isset($_SESSION['user_id']))
+{
+    //Retrieve data from the database
+    $sql = "SELECT email FROM `notacraigslist`.`users`  WHERE `id` = '$user_id'";
+
+    //Display error message if connection fails.
+    if (!mysqli_query($conn, $sql)) {
+        echo "Failed to connect to the database :" . $sql . mysqli_error($conn);
+    }
+
+    //Save the result
+    $result = mysqli_query($conn, $sql);
+
+    // Display the output for each row retrived
+    if (mysqli_num_rows($result) > 0) {
+        while($row = mysqli_fetch_assoc($result)) {
+            $confirmemail = $email = $row['email'];
+        }
+    }
+}
 //Code to be executed when user presses submit button
 if ($_SERVER["REQUEST_METHOD"] == "POST")  {
-
-    //Connecting to the database
-    $conn = mysqli_connect("localhost", "root", "", "notacraigslist");
-    if (!$conn) {
-        die ("Connection failed " . $conn->errno);
-    }
 
     //validating the inputs
     $subcategory = test_input($_POST["subcategory"]);
@@ -91,7 +106,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")  {
 
     //inserting the data into the table
     if ((empty($titleerr)) and (empty($priceerr)) and (empty($emailerr)) and (empty($conferr)) and (empty($termerr)) and (empty($image1err)) and (empty($image2err)) and (empty($image3err)) and (empty($image4err))) {
-        $sql = "INSERT INTO `notacraigslist`.`Posts` (`Title`, `Price`, `Description`, `Email`, `Agreement`, `Image_1`, `Image_2`, `Image_3`, `Image_4`,`Subcategory_ID`, `Location_ID`)  SELECT '$title', '$price', '$description', '$email', '$terms', '$image1', '$image2', '$image3', '$image4', `SubCategory_ID`, `Location_ID` FROM `SubCategory`, `Location` WHERE `SubCategoryName` = '$subcategory' AND `LocationName` = '$location'";
+        $sql = "INSERT INTO `notacraigslist`.`Posts` (`Title`, `Price`, `Description`, `Email`, `Agreement`, `Image_1`, `Image_2`, `Image_3`, `Subcategory_ID`, `Location_ID`)  SELECT '$title', '$price', '$description', '$email', '$terms', '$image1', '$image2', '$image3', `SubCategory_ID`, `Location_ID` FROM `SubCategory`, `Location` WHERE `SubCategoryName` = '$subcategory' AND `LocationName` = '$location'";
 
         if (!mysqli_query($conn, $sql)) {
             echo "New record not created. The error :" . $sql . mysqli_error($conn);
@@ -113,7 +128,7 @@ function test_input($data) {
 <div class="container">
     <form role="form" method = "post" action = "<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" enctype = "multipart/form-data">
         <h3><u>New Post</u></h3>
-        <div class="form-group">
+        <div class="montform" id="reused_form">
             <label for="Sub-Category">Sub-Category</label>
             <select name="subcategory" class="from-control">
                 <?php if ($_SERVER["REQUEST_METHOD"] == "POST") {?>
@@ -129,7 +144,7 @@ function test_input($data) {
                 <option value="Volunteering">Volunteering</option>
             </select>
         </div>
-        <div class="form-group">
+        <p class="text">
             <label for="Location">Location</label>
             <select name="location">
                 <?php if ($_SERVER["REQUEST_METHOD"] == "POST") {?>
@@ -138,51 +153,54 @@ function test_input($data) {
                 <option value="Mumbai">Mumbai</option>
                 <option value="Stockholm">Stockholm</option>
             </select>
-        </div>
-        <div class="form-group">
+        </p>
+        <p class="text">
             <label for="title">Title</label>
-            <input type="text" class="form-control" name="title" value="<?php echo $title;?>">
+            <input type="text" class="form-control-static" name="title" value="<?php echo $title;?>" required>
             <span class ="error"><?php echo $titleerr;?></span>
-        </div>
-        <div class="form-group">
+        </p>
+        <p class="text">
             <label for="Price/Salary">Price/Salary
-            <input type="text" size="5" name="price" value="<?php echo $price;?>">
+            <input class="form-control-static" type="text" size="5" name="price" value="<?php echo $price;?>" required>
             <span class ="error"> <?php echo $priceerr;?> </span>
-        </div>
-        <div>
+        </p>
+        <p class="text">
             <label for="Description">Description</label>
-            <textarea name="description" rows=5 cols =30 ><?php echo $description;?></textarea>
-        </div>
-        <div class="form-control">
+            <textarea name="description" rows=5 cols =30 required><?php echo $description;?></textarea>
+        </p>
+        <p class="email">
             <label for="Email">Email</label>
-            <input type="text" size="50" name="email" value="<?php echo $email;?>">
+            <input type="email" size="50" name="email" value="<?php echo $email;?>" required>
             <span class ="error"> <?php echo $emailerr;?></span>
             <label for="Confirm Email">Confirm Email</label>
-            <input type="text" size="50" name="confirmemail" value="<?php echo $confirmemail;?>">
+            <input type="text" size="50" name="confirmemail" value="<?php echo $confirmemail;?>" required>
                 <span class ="error"><?php echo $conferr;?></span>
-        </div>
-        <div class="form-group">
-            I agree with terms and conditions <input type="checkbox" name="terms" <?php if (isset($terms) && $terms=="checked") echo "checked";?> value="checked">
+        <p>
+            Optional fields:
+            <p>Image 1 (max 5 MB): <input type="text" placeholder="Description" name="image1" value="<?php echo $image1;?>">
+            <input type="file" style="color:transparent" name="file1">
+                <span class ="error"><?php echo $image1err;?></span></p>
+            <p>Image 2 (max 5 MB): <input type="text" placeholder="Description" name="image2" value="<?php echo $image2;?>">
+                <input type="file" style="color:transparent" name="file2">
+                <span class ="error"><?php echo $image2err;?></span></p>
+            <p>Image 3 (max 5 MB): <input type="text" placeholder="Description" name="image3" value="<?php echo $image3;?>">
+                <input type="file" style="color:transparent" name="file3">
+                <span class ="error"><?php echo $image3err;?></span></p>
+        <div>
+            <h4>I agree with terms and conditions <input type="checkbox" name="terms" <?php if (isset($terms) && $terms=="checked") echo "checked";?> value="checked"></h4>
             <span class = "error"><?php echo $termerr;?></span>
         </div>
-        <div>
-            Optional fields:
-            <p>Image 1 (max 5 MB): <input type="text" name="image1" value="<?php echo $image1;?>"><input type="file" style="color:transparent" name="file1">
-                <span class ="error"><?php echo $image1err;?></span></p>
-            <p>Image 2 (max 5 MB): <input type="text" name="image2" value="<?php echo $image2;?>"> <input type="file" style="color:transparent" name="file2">
-                <span class ="error"><?php echo $image2err;?></span></p>
-            <p>Image 3 (max 5 MB): <input type="text" name="image3" value="<?php echo $image3;?>"><input type="file" style="color:transparent" name="file3">
-                <span class ="error"><?php echo $image3err;?></span></p>
-        </div>
-        <div>
+        <div class="submit">
         <button type="submit" class="btn btn-primary" value="Submit">Submit</button>
-        <button type="reset" class="btn btn-danger" value="Reset">Reset</button>
-        </div>
-        <div>
-        <p><a href="index.php" >Go Back</a></p>
+            <button type="reset" class="btn btn-danger" value="Reset">Reset</button>
+            <div class="ease">
+            </div>
         </div>
     </form>
+    <br>
+    <div>
+        <button class="btn-warning" onclick="window.location.href='index.php'" >Go Back</button>
+    </div>
 </div>
 
 <?php include('footer.php');?>
-

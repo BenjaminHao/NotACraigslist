@@ -13,13 +13,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $email = ($_POST['email']);
         $password = ($_POST['password']);
 
-        //Connect to the database
-        $conn = mysqli_connect("localhost", "root", "", "notacraigslist");
-
-        if (!$conn) {
-            die ("Connection failed " . $conn->errno);
-        }
-
         //Check if the combination of username and password exists
         $sql = "SELECT id FROM `notacraigslist`.`users`  WHERE `username` = '$username'";
 
@@ -53,7 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 ?>
-<form role="form" method = "post" action = "<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" enctype = "multipart/form-data">
+<form class="form-signin" role="form" method = "post" action = "<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" enctype = "multipart/form-data">
     <h1 for="Register" class="h3 mb-3 font-weight-normal">Register</h1>
     <label for="Username" class="sr-only">Username</label>
     <input type="text" id="username" class="form-control" placeholder="Username" name="username" required>
@@ -64,18 +57,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <button class="btn btn-lg btn-primary btn-block" type="submit" value="Register">Register</button>
     <?php if(!empty($err)) echo $err;?> <br>
     <p class="mt-5 mb-3 text-muted">&copy; 2018-2019</p>
-</form>
-
-<?php
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (empty($err)) {
-        echo "Your registration is successful!";
-        ?>
-        <a href="User_Login.php">Click here to login</a>
-        <?php
+    <?php
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        if (empty($err)) {
+            echo "Your registration is successful! ";
+            ?>
+            <a href="User_Login.php">Click here to login</a>
+            <?php
+        }
     }
-}
-?>
+    ?>
+</form>
 <?php include('footer.php');?>
 
 

@@ -2,12 +2,6 @@
 <?php
 $title = $price = $email = $description = "";
 
-//Connect to the database
-$conn = mysqli_connect("localhost", "root", "", "notacraigslist");
-if (!$conn) {
-    die ("Connection failed " . $conn->errno);
-}
-
 $search = $_POST['search'];
 
 //Retrieve the data from the database - Fetch query
@@ -30,8 +24,7 @@ if (mysqli_num_rows($result) > 0) {
     }
 }
 else {
-    echo "<ul>No results found";
-    echo "<br></ul>";
+    echo "<h1>No results found</h1>";
 }
 
 //Close the database connection

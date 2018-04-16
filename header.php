@@ -1,3 +1,14 @@
+<?php
+    session_start();
+    if (!isset($_SESSION['user_id'])) $_SESSION['user_id'] = null;
+    //Connect to the database
+    $conn = mysqli_connect("localhost", "root", "", "notacraigslist");
+
+    if (!$conn) {
+        die ("Connection failed " . $conn->errno);
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

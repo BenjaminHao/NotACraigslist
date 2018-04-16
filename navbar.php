@@ -1,5 +1,5 @@
 <!-- Fixed navbar -->
-<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+<div class="navbar navbar-fixed-top navbar-inverse" role="navigation">
     <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
@@ -12,16 +12,16 @@
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#">About</a></li>
                 <li><a href="Ad_Post.php">New Post</a></li>
-                <li>
-                <form method = "post" action = "Ad_Search.php">
-                    <input type ="text" name="search" placeholder="Search">
-                        <input class="btn-success" type="Submit" value="Submit">
-                        <input class="btn-info" type="reset" value="Reset">
-                </form></li>
-                <li ><a href="User_Login.php">Login</a></li>
+                <li class="disabled"><a href="#">About</a></li>
+                <?php if ($_SESSION['user_id'] == null) echo ("<li class='active navbar-'><a href='User_Login.php'>Login</a></li>");
+                else {echo("<li class='active navbar-right'><a href='User_Logout.php'>Logout</a></li>");}?>
             </ul>
+            <form class="navbar-form" method = "post" action = "Ad_Search.php">
+                <input class="input-sm" type ="text" name="search" placeholder="Search">
+                <input class="btn-success" type="Submit" value="Submit">
+                <input class="btn-danger" type="reset" value="Reset">
+            </form>
         </div><!--/.nav-collapse -->
     </div>
 </div>

@@ -3,13 +3,6 @@
 
 $subcategory = $location = $sql = $title = $price = $email = $description = "";
 
-//Connect to the database
-$conn = mysqli_connect("localhost", "root", "", "NotACraigslist");
-
-if (!$conn) {
-    die ("Connection failed " . $conn->errno);
-}
-
 //Fetch the subcategory ID of the subcategory selected by the user
 if (isset($_GET['link'])){
     switch ($_GET['link']) {
@@ -86,8 +79,7 @@ if (mysqli_num_rows($result) > 0) {
     }
 }
 else {
-    echo "<ul>No results found";
-    echo "<br></ul>";
+    echo "<h1 class='h1'>No results found";
 }
 
 //Close the database connection

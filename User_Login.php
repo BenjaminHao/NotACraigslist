@@ -16,13 +16,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")  {
         $username = ($_POST['username']);
         $password = ($_POST['password']);
 
-        //Connect to the database
-        $conn = mysqli_connect("localhost", "root", "", "notacraigslist");
-
-        if (!$conn) {
-            die ("Connection failed " . $conn->errno);
-        }
-
         //Retrieve data from the database
         $sql = "SELECT id FROM `notacraigslist`.`users`  WHERE `username` = '$username' AND `password` = '$password'";
 
@@ -53,7 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")  {
 
     <h1 class="h3 mb-3 font-weight-normal">Please log in</h1>
     <label for="inputUsername" class="sr-only">Username</label>
-    <input type="text" name="username" id="inputEmail" class="form-control" placeholder="Username" required autofocus>
+    <input type="text" name="username" id="inputUsername" class="form-control" placeholder="Username" required autofocus>
     <label for="inputPassword" class="sr-only">Password</label>
     <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
     <div class="checkbox mb-3">
@@ -62,7 +55,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")  {
         </label>
     </div>
     <p class="error"><?php if(!empty($loginerr)) echo $loginerr;?></p>
-    <button  class="btn btn-lg btn-primary btn-block" type="submit" value="Login">Log in</button><br>
+    <button class="btn btn-lg btn-primary btn-block" type="submit" value="Login">Log in</button><br>
     <p>Don't have an account? <a href="User_Register.php">Register!</a></p>
     <p class="mt-5 mb-3 text-muted">&copy; 2018-2019</p>
 </form>
