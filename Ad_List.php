@@ -33,22 +33,22 @@ if (isset($_GET['link'])){
         case "volunteering":
             $subcategory='33';
             break;
-        case "usa":
+        case "canada":
             $location='11';
             break;
-        case "india":
+        case "usa":
             $location='21';
             break;
-        case "sweden":
+        case "china":
             $location='31';
             break;
-        case "cupertino":
+        case "vancouver":
             $location='11';
             break;
-        case "mumbai":
+        case "newyork":
             $location='21';
             break;
-        case "stockholm":
+        case "beijing":
             $location='31';
             break;
     }

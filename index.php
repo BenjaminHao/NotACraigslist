@@ -14,35 +14,35 @@
 <!--            <h5>--><?//= $ads[2][2];?><!--</h5>-->
 <!--            <a href="Ad_List.php.php?id=2">Visit</a>-->
 <!--        </div>-->
-        <div class="col-md-9">
+        <div class="col-lg-12">
             <table class="table">
                 <tr>
-                    <th><b>For Sales</b></th>
-                    <th><b>Services</b></th>
-                    <th><b>Jobs</b></th>
-                    <th><b>Country</b></th>
-                    <th><b>Locations</b></th>
+                    <th>For Sales</th>
+                    <th>Services</th>
+                    <th>Jobs</th>
+                    <th>Country</th>
+                    <th>Locations</th>
                 </tr>
                 <tr>
                     <td> <a href="Ad_List.php?link=books"> Books </a></td>
                     <td> <a href="Ad_List.php?link=computer"> Computer </a></td>
                     <td> <a href="Ad_List.php?link=fulltime"> Full-Time </a></td>
-                    <td> <a href="Ad_List.php?link=usa"> USA </a></td>
-                    <td> <a href="Ad_List.php?link=cupertino"> Cupertino </a></td>
+                    <td> <a href="Ad_List.php?link=canada"> Canada </a></td>
+                    <td> <a href="Ad_List.php?link=vancouver"> Vancouver </a></td>
                 </tr>
                 <tr>
                     <td> <a href="Ad_List.php?link=electronics"> Electronics </a></td>
                     <td> <a href="Ad_List.php?link=financial"> Financial </a></td>
                     <td> <a href="Ad_List.php?link=parttime"> Part-Time </a></td>
-                    <td> <a href="Ad_List.php?link=india"> India </a></td>
-                    <td> <a href="Ad_List.php?link=mumbai"> Mumbai </a></td>
+                    <td> <a href="Ad_List.php?link=usa"> USA </a></td>
+                    <td> <a href="Ad_List.php?link=newyork"> NewYork </a></td>
                 </tr>
                 <tr>
                     <td> <a href="Ad_List.php?link=household"> Household </a></td>
                     <td> <a href="Ad_List.php?link=automobiles"> Automobiles </a></td>
                     <td> <a href="Ad_List.php?link=volunteering"> Volunteering </a></td>
-                    <td> <a href="Ad_List.php?link=sweden"> Sweden </a></td>
-                    <td> <a href="Ad_List.php?link=stockholm"> Stockholm </a></td>
+                    <td> <a href="Ad_List.php?link=china"> China </a></td>
+                    <td> <a href="Ad_List.php?link=beijing"> Beijing </a></td>
                 </tr>
             </table>
         </div>

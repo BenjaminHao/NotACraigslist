@@ -149,9 +149,9 @@ function test_input($data) {
             <select name="location">
                 <?php if ($_SERVER["REQUEST_METHOD"] == "POST") {?>
                     <option value="<?php echo $location;?>" selected="selected"><?php echo $location;?></option> <?php } ?>
-                <option value="Cupertino">Cupertino</option>
-                <option value="Mumbai">Mumbai</option>
-                <option value="Stockholm">Stockholm</option>
+                <option value="Vancouver">Vancouver</option>
+                <option value="NewYork">NewYork</option>
+                <option value="Beijing">Beijing</option>
             </select>
         </p>
         <p class="text">
